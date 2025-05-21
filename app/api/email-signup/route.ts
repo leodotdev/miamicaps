@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/db";
+import { getDb } from "@/db/index-pg";
 import { emailSignups } from "@/db/schema";
 import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
@@ -23,6 +23,8 @@ export async function POST(req: NextRequest) {
     }
     
     const { email } = validatedData.data;
+    
+    const db = getDb();
     
     // Check for existing signup
     const existingSignup = await db.query.emailSignups.findFirst({

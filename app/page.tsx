@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { EmailSignupForm } from "@/components/email-signup-form";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -7,10 +7,12 @@ export default function Home() {
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/50 z-10" />
-        <img
+        <Image
           src="/placeholder.svg"
           alt="Background"
-          className="h-full w-full object-cover"
+          className="object-cover"
+          fill
+          priority
         />
       </div>
       
@@ -47,7 +49,7 @@ export default function Home() {
             <div className="space-y-2">
               <h1 className="text-2xl font-bold tracking-tight">Coming Soon</h1>
               <p className="text-muted-foreground">
-                We're working on something exciting. Sign up to be the first to know when we launch.
+                We&apos;re working on something exciting. Sign up to be the first to know when we launch.
               </p>
             </div>
             

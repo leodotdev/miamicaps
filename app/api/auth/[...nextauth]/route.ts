@@ -2,13 +2,13 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import bcrypt from "bcrypt";
-import { db } from "@/db";
+import { getDb } from "@/db/index-pg";
 import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { v4 as uuidv4 } from "uuid";
 
 const handler = NextAuth({
-  adapter: DrizzleAdapter(db),
+  adapter: DrizzleAdapter(getDb()),
   providers: [
     CredentialsProvider({
       id: "credentials",
@@ -22,6 +22,7 @@ const handler = NextAuth({
           return null;
         }
 
+        const db = getDb();
         const user = await db.query.users.findFirst({
           where: eq(users.email, credentials.email),
         });
@@ -76,6 +77,8 @@ const handler = NextAuth({
 export { handler as GET, handler as POST };
 
 export async function register(email: string, password: string, name?: string) {
+  const db = getDb();
+
   // Check if user already exists
   const existingUser = await db.query.users.findFirst({
     where: eq(users.email, email),

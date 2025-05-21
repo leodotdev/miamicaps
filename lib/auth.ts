@@ -1,13 +1,11 @@
-import { db } from "@/db";
-import { initializeDatabase } from "@/db";
-import { PrismaAdapter } from "@auth/prisma-adapter";
+import { getDb } from "@/db/index-pg";
 
-// Make sure database is initialized
-initializeDatabase();
+// Initialize connection
+getDb();
 
 // Types
 import { DefaultSession, DefaultUser } from "next-auth";
-import { JWT, DefaultJWT } from "next-auth/jwt";
+import { DefaultJWT } from "next-auth/jwt";
 
 declare module "next-auth" {
   interface Session extends DefaultSession {

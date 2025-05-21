@@ -61,7 +61,7 @@ export function EmailSignupFormClient() {
           Thank you for signing up!
         </p>
         <p className="text-sm text-muted-foreground mt-1">
-          We'll notify you when we launch.
+          We&apos;ll notify you when we launch.
         </p>
       </div>
     );
