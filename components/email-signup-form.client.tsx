@@ -3,7 +3,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,7 +33,7 @@ export function EmailSignupFormClient() {
 
   async function onSubmit(data: FormValues) {
     setIsSubmitting(true);
-    
+
     try {
       const response = await fetch("/api/email-signup", {
         method: "POST",
@@ -36,18 +42,18 @@ export function EmailSignupFormClient() {
         },
         body: JSON.stringify(data),
       });
-      
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Failed to submit email");
       }
-      
+
       setIsSubmitted(true);
     } catch (error) {
       console.error("Error submitting email:", error);
-      form.setError("email", { 
-        type: "server", 
-        message: "An error occurred. Please try again." 
+      form.setError("email", {
+        type: "server",
+        message: "An error occurred. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
@@ -57,10 +63,8 @@ export function EmailSignupFormClient() {
   if (isSubmitted) {
     return (
       <div className="p-4 text-center bg-primary/10 rounded-md">
-        <p className="font-medium text-primary">
-          Thank you for signing up!
-        </p>
-        <p className="text-sm text-muted-foreground mt-1">
+        <p className="font-medium text-primary">Thank you for signing up!</p>
+        <p className="text-muted-foreground mt-1">
           We&apos;ll notify you when we launch.
         </p>
       </div>
@@ -80,11 +84,12 @@ export function EmailSignupFormClient() {
                   <Input
                     placeholder="Enter your email"
                     type="email"
+                    className="focus-visible:ring-ring focus-visible:ring-offset-0 dark:border-input"
                     {...field}
                     disabled={isSubmitting}
                   />
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     disabled={isSubmitting}
                     className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm"
                   >
