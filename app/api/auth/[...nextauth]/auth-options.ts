@@ -73,8 +73,6 @@ export const authOptions: NextAuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET || "your-secret-key-change-in-production",
   debug: process.env.NODE_ENV === "development",
-  // Add runtime config to fix Edge compatibility issues
-  runtime: "nodejs",
 };
 
 export async function register(email: string, password: string, name?: string) {

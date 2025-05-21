@@ -9,10 +9,8 @@ const nextConfig = {
     // Don't run type checking during builds (Vercel will handle separately)
     ignoreBuildErrors: true,
   },
-  experimental: {
-    // Ensure auth routes use Node.js runtime, not Edge
-    serverComponentsExternalPackages: ["bcrypt", "better-sqlite3"],
-  },
+  // Ensure auth routes use Node.js runtime, not Edge
+  serverExternalPackages: ["bcrypt", "better-sqlite3"],
 };
 
 export default nextConfig;

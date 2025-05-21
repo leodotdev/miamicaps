@@ -1,9 +1,14 @@
 import NextAuth from "next-auth";
 import { authOptions } from "./auth-options";
+import { runtime } from "../../route-config";
 
 /**
- * Note: We're using the more traditional export pattern rather than the
- * newer { auth, handlers } pattern to ensure compatibility with middleware and Edge runtimes
+ * Force Node.js runtime for NextAuth
+ */
+export { runtime };
+
+/**
+ * Using traditional export pattern for compatibility
  */
 const handler = NextAuth(authOptions);
 
