@@ -1,14 +1,17 @@
 import { EmailSignupForm } from "@/components/email-signup-form";
 import Image from "next/image";
+import { auth } from "@/app/api/auth/[...nextauth]/route";
 
-export default function Home() {
+export default async function Home() {
+  // Pre-fetch auth state server-side to avoid client-side auth errors
+  await auth();
   return (
     <div className="relative min-h-svh flex items-center justify-center">
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/50 z-10" />
         <Image
-          src="/photo.jpg"
+          src="/photo.jpeg"
           alt="Background"
           className="object-cover"
           fill
