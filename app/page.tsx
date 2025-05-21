@@ -1,7 +1,10 @@
 import { EmailSignupForm } from "@/components/email-signup-form";
 import Image from "next/image";
+import { headers } from "next/headers";
 
 export default function Home() {
+  // Force server-side rendering and cache busting
+  headers();
   return (
     <div className="relative min-h-svh flex items-center justify-center">
       {/* Background image */}

@@ -5,9 +5,9 @@ import { getDb } from "@/db/index-pg";
 import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { v4 as uuidv4 } from "uuid";
-import { AuthOptions } from "next-auth";
+import type { NextAuthOptions } from "next-auth";
 
-export const authOptions: AuthOptions = {
+export const authOptions: NextAuthOptions = {
   adapter: DrizzleAdapter(getDb()),
   providers: [
     CredentialsProvider({
@@ -73,6 +73,8 @@ export const authOptions: AuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET || "your-secret-key-change-in-production",
   debug: process.env.NODE_ENV === "development",
+  // Add runtime config to fix Edge compatibility issues
+  runtime: "nodejs",
 };
 
 export async function register(email: string, password: string, name?: string) {
