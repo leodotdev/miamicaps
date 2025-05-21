@@ -1,6 +1,6 @@
 import { Pool } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-serverless';
-import * as schema from "./schema";
+import * as schema from "./schema-pg";
 
 // Get the DATABASE_URL from env or use a fallback for builds
 const connectionString = process.env.DATABASE_URL || 
