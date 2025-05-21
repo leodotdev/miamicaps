@@ -1,5 +1,7 @@
 import { EmailSignupForm } from "@/components/email-signup-form";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import { headers } from "next/headers";
 
 export default function Home() {
@@ -7,6 +9,16 @@ export default function Home() {
   headers();
   return (
     <div className="relative min-h-svh flex items-center justify-center">
+      {/* Auth buttons */}
+      <div className="absolute top-4 right-4 z-20 flex gap-2">
+        <Button variant="ghost" size="sm" asChild className="text-white hover:text-white hover:bg-white/20 backdrop-blur-sm">
+          <Link href="/login">Log in</Link>
+        </Button>
+        <Button variant="ghost" size="sm" asChild className="text-white hover:text-white hover:bg-primary/70 backdrop-blur-sm">
+          <Link href="/signup">Sign up</Link>
+        </Button>
+      </div>
+      
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <div className="absolute backdrop-blur-md inset-0 bg-black/50 z-10" />
@@ -21,11 +33,11 @@ export default function Home() {
 
       {/* Content */}
       <div className="relative z-10 max-w-md w-full px-4">
-        <div className="bg-background/90 backdrop-blur-sm rounded-2xl p-12 shadow-xl">
+        <div className="bg-background/90 backdrop-blur-sm rounded-3xl p-7 shadow-xl">
           <div className="flex flex-col items-center gap-6 text-center">
             <div className="flex flex-col items-center">
-              <div className="flex items-center gap-2 bg-primary/10 p-4 rounded-xl border border-primary/20">
-                <div className="squircle">
+              <div className="flex items-center gap-3 bg-primary/10 p-4 rounded-lg border border-primary/20">
+                <div className="squircle shadow-lg shadow-sky-500/25">
                   <Image
                     src="/miamicaps-icon.png"
                     alt="Miami Captains Logo"
@@ -34,14 +46,27 @@ export default function Home() {
                   />
                 </div>
                 <div className="flex flex-col items-start text-left">
-                  <h1 className="text-xl font-black uppercase">
-                    Miami Captains
-                  </h1>
+                  <h1 className="text-xl font-extrabold">Miami Captains</h1>
                   <span className="text-xs text-muted-foreground">
                     The #1 place for finding and booking amazing boat captains
                     in and around Miami.
                   </span>
                 </div>
+              </div>
+            </div>
+
+            <div className="relative w-full h-40 bg-primary/5 rounded-xl overflow-hidden border border-primary/20 mb-2">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src="/globe.svg"
+                  alt="Miami Captains App Preview"
+                  width={80}
+                  height={80}
+                  className="opacity-30"
+                />
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-sm text-muted-foreground">App Preview</span>
               </div>
             </div>
 
