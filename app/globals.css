@@ -130,7 +130,7 @@
     --radius: 28%;
     border-radius: var(--radius);
     background: var(--primary);
-    padding: 0.5rem;
+    padding: 0.125rem;
     display: flex;
     align-items: center;
     justify-content: center;

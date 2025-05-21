@@ -11,14 +11,24 @@ export default function Home() {
     <div className="relative min-h-svh flex items-center justify-center">
       {/* Auth buttons */}
       <div className="absolute top-4 right-4 z-20 flex gap-2">
-        <Button variant="ghost" size="sm" asChild className="text-white hover:text-white hover:bg-white/20 backdrop-blur-sm">
+        <Button
+          variant="ghost"
+          size="sm"
+          asChild
+          className="text-white hover:text-white hover:bg-white/20 backdrop-blur-sm"
+        >
           <Link href="/login">Log in</Link>
         </Button>
-        <Button variant="ghost" size="sm" asChild className="text-white hover:text-white hover:bg-primary/70 backdrop-blur-sm">
+        <Button
+          variant="ghost"
+          size="sm"
+          asChild
+          className="text-white hover:text-white hover:bg-primary/70 backdrop-blur-sm"
+        >
           <Link href="/signup">Sign up</Link>
         </Button>
       </div>
-      
+
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <div className="absolute backdrop-blur-md inset-0 bg-black/50 z-10" />
@@ -55,7 +65,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative w-full h-40 bg-primary/5 rounded-xl overflow-hidden border border-primary/20 mb-2">
+            <div className="relative w-full h-40 overflow-hidden">
               <div className="absolute inset-0 flex items-center justify-center">
                 <Image
                   src="/globe.svg"
@@ -66,7 +76,9 @@ export default function Home() {
                 />
               </div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-sm text-muted-foreground">App Preview</span>
+                <span className="text-sm text-muted-foreground">
+                  App Preview
+                </span>
               </div>
             </div>
 

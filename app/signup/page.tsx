@@ -8,8 +8,8 @@ export default function SignupPage() {
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
           <Link href="/" className="flex flex-col items-center md:items-start">
-            <div className="flex items-center gap-3 p-2 rounded-lg bg-primary/5 border border-primary/10">
-              <div className="squircle">
+            <div className="flex items-center gap-3">
+              <div className="squircle shadow-lg shadow-sky-500/25">
                 <Image
                   src="/miamicaps-icon.png"
                   alt="Miami Captains Logo"
@@ -18,7 +18,9 @@ export default function SignupPage() {
                 />
               </div>
               <div>
-                <span className="font-bold text-foreground">Miami Captains</span>
+                <span className="font-extrabold text-foreground">
+                  Miami Captains
+                </span>
                 <p className="text-xs text-muted-foreground">
                   Miami&apos;s #1 place for amazing boat captains
                 </p>

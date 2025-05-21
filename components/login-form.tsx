@@ -70,7 +70,7 @@ export function LoginForm() {
     <div className="space-y-6">
       <div className="space-y-2 text-center">
         <h1 className="text-2xl font-bold">Login</h1>
-        <p className="text-muted-foreground text-sm">
+        <p className="text-muted-foreground">
           Enter your credentials to access your account
         </p>
       </div>
@@ -102,20 +102,20 @@ export function LoginForm() {
               </FormItem>
             )}
           />
-          
+
           {error && (
-            <div className="rounded bg-destructive/15 p-3 text-center text-sm text-destructive">
+            <div className="rounded bg-destructive/15 p-3 text-center text-destructive">
               {error}
             </div>
           )}
-          
+
           <Button type="submit" className="w-full" disabled={isSubmitting}>
             {isSubmitting ? "Logging in..." : "Login"}
           </Button>
         </form>
       </Form>
-      
-      <div className="text-center text-sm">
+
+      <div className="text-center">
         <p className="text-muted-foreground">
           Don&#39;t have an account?{" "}
           <Link href="/signup" className="text-primary hover:underline">

@@ -20,17 +20,17 @@ import { Input } from "@/components/ui/input";
 
 const formSchema = z
   .object({
-    name: z
-      .string()
-      .min(2, { message: "Name must be at least 2 characters" }),
-    email: z
-      .string()
-      .email({ message: "Please enter a valid email address" }),
+    name: z.string().min(2, { message: "Name must be at least 2 characters" }),
+    email: z.string().email({ message: "Please enter a valid email address" }),
     password: z
       .string()
       .min(8, { message: "Password must be at least 8 characters" })
-      .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter" })
-      .regex(/[a-z]/, { message: "Password must contain at least one lowercase letter" })
+      .regex(/[A-Z]/, {
+        message: "Password must contain at least one uppercase letter",
+      })
+      .regex(/[a-z]/, {
+        message: "Password must contain at least one lowercase letter",
+      })
       .regex(/[0-9]/, { message: "Password must contain at least one number" }),
     confirmPassword: z
       .string()
@@ -89,7 +89,9 @@ export function SignupForm() {
       });
 
       if (signInResponse?.error) {
-        setError("Account created but failed to log in. Please try logging in.");
+        setError(
+          "Account created but failed to log in. Please try logging in."
+        );
         router.push("/login");
         return;
       }
@@ -108,7 +110,7 @@ export function SignupForm() {
     <div className="space-y-6">
       <div className="space-y-2 text-center">
         <h1 className="text-2xl font-bold">Sign Up</h1>
-        <p className="text-muted-foreground text-sm">
+        <p className="text-muted-foreground">
           Create an account to get started
         </p>
       </div>
@@ -166,20 +168,20 @@ export function SignupForm() {
               </FormItem>
             )}
           />
-          
+
           {error && (
-            <div className="rounded bg-destructive/15 p-3 text-center text-sm text-destructive">
+            <div className="rounded bg-destructive/15 p-3 text-center text-destructive">
               {error}
             </div>
           )}
-          
+
           <Button type="submit" className="w-full" disabled={isSubmitting}>
             {isSubmitting ? "Creating account..." : "Sign up"}
           </Button>
         </form>
       </Form>
-      
-      <div className="text-center text-sm">
+
+      <div className="text-center">
         <p className="text-muted-foreground">
           Already have an account?{" "}
           <Link href="/login" className="text-primary hover:underline">
