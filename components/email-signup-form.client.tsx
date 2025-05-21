@@ -74,32 +74,34 @@ export function EmailSignupFormClient() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <div className="flex gap-2">
-                  <Input
-                    placeholder="Enter your email"
-                    type="email"
-                    {...field}
-                    disabled={isSubmitting}
-                  />
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm"
-                  >
-                    {isSubmitting ? "Submitting..." : "Notify me"}
-                  </Button>
-                </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="flex gap-2">
+          <div className="flex-1">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem className="space-y-0">
+                  <FormControl>
+                    <Input
+                      placeholder="Enter your email"
+                      type="email"
+                      {...field}
+                      disabled={isSubmitting}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm"
+          >
+            {isSubmitting ? "Submitting..." : "Notify me"}
+          </Button>
+        </div>
       </form>
     </Form>
   );
