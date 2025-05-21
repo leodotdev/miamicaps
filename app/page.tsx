@@ -1,10 +1,7 @@
 import { EmailSignupForm } from "@/components/email-signup-form";
 import Image from "next/image";
-import { auth } from "@/app/api/auth/[...nextauth]/route";
 
-export default async function Home() {
-  // Pre-fetch auth state server-side to avoid client-side auth errors
-  await auth();
+export default function Home() {
   return (
     <div className="relative min-h-svh flex items-center justify-center">
       {/* Background image */}
