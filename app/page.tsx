@@ -9,7 +9,7 @@ export default function Home() {
     <div className="relative min-h-svh flex items-center justify-center">
       {/* Background image */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black/50 z-10" />
+        <div className="absolute backdrop-blur-md inset-0 bg-black/50 z-10" />
         <Image
           src="/photo.jpeg"
           alt="Background"
@@ -24,14 +24,14 @@ export default function Home() {
         <div className="bg-background/90 backdrop-blur-sm rounded-lg p-6 shadow-lg">
           <div className="flex flex-col items-center gap-6 text-center">
             <div className="flex items-center gap-2 font-medium">
-              <Image 
-                src="/miamicaps-icon.png" 
-                alt="Miami Caps Logo" 
-                width={32} 
-                height={32} 
+              <Image
+                src="/miamicaps-icon.png"
+                alt="Miami Captains Logo"
+                width={64}
+                height={64}
                 className="rounded-md"
               />
-              <span className="text-xl">Miami Caps</span>
+              <span className="text-xl">Miami Captains</span>
             </div>
 
             <div className="space-y-2">

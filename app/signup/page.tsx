@@ -8,11 +8,11 @@ export default function SignupPage() {
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
           <Link href="/" className="flex items-center gap-2 font-medium">
-            <Image 
-              src="/miamicaps-icon.png" 
-              alt="Miami Caps Logo" 
-              width={24} 
-              height={24} 
+            <Image
+              src="/miamicaps-icon.png"
+              alt="Miami Captains Logo"
+              width={48}
+              height={48}
               className="rounded-md"
             />
             Miami Caps
