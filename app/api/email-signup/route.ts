@@ -1,46 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { promises as fs } from "fs";
-import path from "path";
 
 // Force Node.js runtime
 export const runtime = "nodejs";
 
-// Data file path
-const DATA_FILE = path.join(process.cwd(), "data", "email-signups.json");
+// In-memory storage for email signups (works on serverless)
+let emailSignups: Array<{ email: string; timestamp: string; id: string }> = [];
 
-// Email validation schema
+// Email validation schema  
 const emailSignupSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
 });
-
-// Helper function to ensure data directory exists
-async function ensureDataDirectory() {
-  const dataDir = path.dirname(DATA_FILE);
-  try {
-    await fs.access(dataDir);
-  } catch {
-    await fs.mkdir(dataDir, { recursive: true });
-  }
-}
-
-// Helper function to read email signups from file
-async function readEmailSignups() {
-  try {
-    await ensureDataDirectory();
-    const data = await fs.readFile(DATA_FILE, "utf-8");
-    return JSON.parse(data);
-  } catch (error) {
-    // File doesn't exist or is invalid, return empty array
-    return [];
-  }
-}
-
-// Helper function to write email signups to file
-async function writeEmailSignups(signups: any[]) {
-  await ensureDataDirectory();
-  await fs.writeFile(DATA_FILE, JSON.stringify(signups, null, 2));
-}
 
 export async function POST(req: NextRequest) {
   try {
@@ -58,11 +28,8 @@ export async function POST(req: NextRequest) {
     
     const { email } = validatedData.data;
     
-    // Read existing signups
-    const existingSignups = await readEmailSignups();
-    
     // Check if email already exists
-    const existingSignup = existingSignups.find((signup: any) => signup.email === email);
+    const existingSignup = emailSignups.find(signup => signup.email === email);
     if (existingSignup) {
       return NextResponse.json(
         { message: "Email already registered" },
@@ -70,18 +37,17 @@ export async function POST(req: NextRequest) {
       );
     }
     
-    // Add new signup
+    // Add email to in-memory storage
     const newSignup = {
       id: Date.now().toString(),
       email,
       timestamp: new Date().toISOString(),
     };
     
-    existingSignups.push(newSignup);
-    await writeEmailSignups(existingSignups);
+    emailSignups.push(newSignup);
     
     console.log(`Email signup: ${email} at ${newSignup.timestamp}`);
-    console.log(`Total signups: ${existingSignups.length}`);
+    console.log(`Total signups: ${emailSignups.length}`);
     
     return NextResponse.json(
       { message: "Email registered successfully" },
@@ -111,12 +77,9 @@ export async function GET(req: NextRequest) {
       );
     }
     
-    // Read all signups from file
-    const allSignups = await readEmailSignups();
-    
     return NextResponse.json({
-      signups: allSignups,
-      total: allSignups.length,
+      signups: emailSignups,
+      total: emailSignups.length,
       lastUpdated: new Date().toISOString()
     });
     
