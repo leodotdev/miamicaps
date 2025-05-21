@@ -50,7 +50,7 @@ export function EmailSignupForm() {
         console.error("Error parsing response:", jsonError);
         throw new Error("Server response was not valid JSON");
       }
-      
+
       if (!response.ok) {
         throw new Error(responseData.error || "Failed to submit email");
       }
@@ -70,9 +70,9 @@ export function EmailSignupForm() {
 
   if (isSubmitted) {
     return (
-      <div className="p-4 text-center bg-primary/10 rounded-md">
+      <div className="p-4 text-center bg-primary/10 rounded-lg self-stretch">
         <p className="font-medium text-primary">Thank you for signing up!</p>
-        <p className="text-muted-foreground mt-1">
+        <p className="text-muted-foreground">
           We&apos;ll notify you when we launch.
         </p>
       </div>

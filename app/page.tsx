@@ -65,26 +65,21 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative w-full h-40 overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative w-full overflow-hidden">
+              <div className="flex items-center justify-center">
                 <Image
-                  src="/globe.svg"
+                  src="/miamicaps-coming-soon.png"
                   alt="Miami Captains App Preview"
-                  width={80}
-                  height={80}
-                  className="opacity-30"
+                  width={288}
+                  height={288}
+                  className="opacity-50"
                 />
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-sm text-muted-foreground">
-                  App Preview
-                </span>
               </div>
             </div>
 
             <div className="space-y-2">
               <h1 className="text-4xl font-medium tracking-tight">
-                Coming Soon
+                Coming soon!
               </h1>
               <p className="text-muted-foreground">
                 We&apos;re working on something exciting. Sign up to be the
