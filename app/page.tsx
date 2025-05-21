@@ -23,15 +23,20 @@ export default function Home() {
       <div className="relative z-10 max-w-md w-full px-4">
         <div className="bg-background/90 backdrop-blur-sm rounded-lg p-6 shadow-lg">
           <div className="flex flex-col items-center gap-6 text-center">
-            <div className="flex items-center gap-2 font-medium">
-              <Image
-                src="/miamicaps-icon.png"
-                alt="Miami Captains Logo"
-                width={64}
-                height={64}
-                className="rounded-md"
-              />
-              <span className="text-xl">Miami Captains</span>
+            <div className="flex flex-col items-center">
+              <div className="flex items-center gap-2 font-medium">
+                <Image
+                  src="/miamicaps-icon.png"
+                  alt="Miami Captains Logo"
+                  width={64}
+                  height={64}
+                  className="rounded-md"
+                />
+                <span className="text-xl">Miami Captains</span>
+              </div>
+              <p className="text-sm text-muted-foreground mt-1">
+                Miami&apos;s #1 place for finding and booking amazing boat captains.
+              </p>
             </div>
 
             <div className="space-y-2">

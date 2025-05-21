@@ -7,15 +7,20 @@ export default function LoginPage() {
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
-          <Link href="/" className="flex items-center gap-2 font-medium">
-            <Image
-              src="/miamicaps-icon.png"
-              alt="Miami Captains Logo"
-              width={48}
-              height={48}
-              className="rounded-md"
-            />
-            Miami Caps
+          <Link href="/" className="flex flex-col items-center md:items-start">
+            <div className="flex items-center gap-2 font-medium">
+              <Image
+                src="/miamicaps-icon.png"
+                alt="Miami Captains Logo"
+                width={48}
+                height={48}
+                className="rounded-md"
+              />
+              <span>Miami Captains</span>
+            </div>
+            <p className="text-xs text-muted-foreground mt-1 md:ml-10">
+              Miami&apos;s #1 place for amazing boat captains
+            </p>
           </Link>
         </div>
         <div className="flex flex-1 items-center justify-center">
