@@ -84,7 +84,6 @@ export function EmailSignupFormClient() {
                   <Input
                     placeholder="Enter your email"
                     type="email"
-                    className="focus-visible:ring-ring focus-visible:ring-offset-0 dark:border-input"
                     {...field}
                     disabled={isSubmitting}
                   />
