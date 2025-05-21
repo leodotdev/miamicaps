@@ -43,11 +43,19 @@ export function EmailSignupForm() {
         body: JSON.stringify(data),
       });
 
+      let responseData;
+      try {
+        responseData = await response.json();
+      } catch (jsonError) {
+        console.error("Error parsing response:", jsonError);
+        throw new Error("Server response was not valid JSON");
+      }
+      
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to submit email");
+        throw new Error(responseData.error || "Failed to submit email");
       }
 
+      console.log("Email signup successful:", responseData.message);
       setIsSubmitted(true);
     } catch (error) {
       console.error("Error submitting email:", error);
