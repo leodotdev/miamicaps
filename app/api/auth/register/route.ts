@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { register } from "../[...nextauth]/route";
-import { runtime } from "../../route-config";
 
 // Force Node.js runtime
-export { runtime };
+export const runtime = "nodejs";
 
 const registerSchema = z.object({
   name: z.string().min(2).optional(),

@@ -11,6 +11,11 @@ const nextConfig = {
   },
   // Ensure auth routes use Node.js runtime, not Edge
   serverExternalPackages: ["bcrypt", "better-sqlite3"],
+  // Set environment variables for build
+  env: {
+    NODE_ENV: process.env.NODE_ENV || "production",
+    VERCEL_ENV: process.env.VERCEL_ENV || "production",
+  },
 };
 
 export default nextConfig;

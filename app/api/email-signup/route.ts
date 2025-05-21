@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/db/index-pg";
 import { emailSignups } from "@/db/schema";
-import { runtime } from "../route-config";
 
 // Force Node.js runtime
-export { runtime };
+export const runtime = "nodejs";
 import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
 

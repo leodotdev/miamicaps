@@ -1,11 +1,10 @@
 import NextAuth from "next-auth";
 import { authOptions } from "./auth-options";
-import { runtime } from "../../route-config";
 
 /**
  * Force Node.js runtime for NextAuth
  */
-export { runtime };
+export const runtime = "nodejs";
 
 /**
  * Using traditional export pattern for compatibility
