@@ -24,7 +24,7 @@ export default function Home() {
         <div className="bg-background/90 backdrop-blur-sm rounded-2xl p-12 shadow-xl">
           <div className="flex flex-col items-center gap-6 text-center">
             <div className="flex flex-col items-center">
-              <div className="flex items-center gap-2 font-medium">
+              <div className="flex items-center gap-2 bg-primary/10 p-4 rounded-xl border border-primary/20">
                 <div className="squircle">
                   <Image
                     src="/miamicaps-icon.png"

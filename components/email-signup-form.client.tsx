@@ -83,7 +83,11 @@ export function EmailSignupFormClient() {
                     {...field}
                     disabled={isSubmitting}
                   />
-                  <Button type="submit" disabled={isSubmitting}>
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm"
+                  >
                     {isSubmitting ? "Submitting..." : "Notify me"}
                   </Button>
                 </div>

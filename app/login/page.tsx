@@ -8,7 +8,7 @@ export default function LoginPage() {
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
           <Link href="/" className="flex flex-col items-center md:items-start">
-            <div className="flex items-center gap-2 font-medium">
+            <div className="flex items-center gap-3 p-2 rounded-lg bg-primary/5 border border-primary/10">
               <div className="squircle">
                 <Image
                   src="/miamicaps-icon.png"
@@ -17,11 +17,13 @@ export default function LoginPage() {
                   height={40}
                 />
               </div>
-              <span>Miami Captains</span>
+              <div>
+                <span className="font-bold text-foreground">Miami Captains</span>
+                <p className="text-xs text-muted-foreground">
+                  Miami&apos;s #1 place for amazing boat captains
+                </p>
+              </div>
             </div>
-            <p className="text-xs text-muted-foreground mt-1 md:ml-10">
-              Miami&apos;s #1 place for amazing boat captains
-            </p>
           </Link>
         </div>
         <div className="flex flex-1 items-center justify-center">
