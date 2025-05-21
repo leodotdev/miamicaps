@@ -9,13 +9,14 @@ export default function LoginPage() {
         <div className="flex justify-center gap-2 md:justify-start">
           <Link href="/" className="flex flex-col items-center md:items-start">
             <div className="flex items-center gap-2 font-medium">
-              <Image
-                src="/miamicaps-icon.png"
-                alt="Miami Captains Logo"
-                width={48}
-                height={48}
-                className="rounded-md"
-              />
+              <div className="squircle">
+                <Image
+                  src="/miamicaps-icon.png"
+                  alt="Miami Captains Logo"
+                  width={40}
+                  height={40}
+                />
+              </div>
               <span>Miami Captains</span>
             </div>
             <p className="text-xs text-muted-foreground mt-1 md:ml-10">
