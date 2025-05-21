@@ -13,7 +13,8 @@ const nextConfig = {
   serverExternalPackages: ["bcrypt", "better-sqlite3"],
   // Set environment variables for build
   env: {
-    NODE_ENV: process.env.NODE_ENV || "production",
+    // Cannot set NODE_ENV directly, using custom name
+    BUILD_ENV: process.env.NODE_ENV || "production",
     VERCEL_ENV: process.env.VERCEL_ENV || "production",
   },
 };

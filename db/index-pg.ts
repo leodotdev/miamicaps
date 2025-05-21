@@ -12,7 +12,7 @@ let db: ReturnType<typeof drizzle> | null = null;
 // Get the database instance
 export function getDb() {
   // Skip actual connection during build process
-  if (process.env.NODE_ENV === 'production' && process.env.VERCEL_ENV === 'preview') {
+  if (process.env.VERCEL_ENV === 'preview') {
     // Return a mock during build
     return {} as ReturnType<typeof drizzle>;
   }
