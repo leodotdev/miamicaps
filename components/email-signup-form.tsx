@@ -81,14 +81,14 @@ export function EmailSignupForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
         <div className="flex gap-2">
           <div className="flex-1">
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem className="space-y-0">
+                <FormItem>
                   <FormControl>
                     <Input
                       placeholder="Enter your email"
@@ -107,7 +107,7 @@ export function EmailSignupForm() {
             disabled={isSubmitting}
             className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm"
           >
-            {isSubmitting ? "Submitting..." : "Notify me"}
+            {isSubmitting ? "Submitting…" : "Notify me"}
           </Button>
         </div>
       </form>

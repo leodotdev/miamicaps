@@ -2,11 +2,17 @@ import { EmailSignupForm } from "@/components/email-signup-form";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { headers } from "next/headers";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/auth-options";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  // Force server-side rendering and cache busting
-  headers();
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+
+  // If user is logged in, redirect to home page
+  if (session) {
+    redirect("/home");
+  }
   return (
     <div className="relative min-h-svh flex items-center justify-center">
       {/* Auth buttons */}
@@ -43,7 +49,7 @@ export default function Home() {
 
       {/* Content */}
       <div className="relative z-10 max-w-md w-full px-4">
-        <div className="bg-background/90 backdrop-blur-sm rounded-3xl p-7 shadow-xl">
+        <div className="bg-background backdrop-blur-sm rounded-3xl p-7 shadow-xl">
           <div className="flex flex-col items-center gap-6 text-center">
             <div className="flex flex-col items-center">
               <div className="flex items-center gap-3 bg-primary/10 p-4 rounded-lg border border-primary/20">
@@ -70,8 +76,8 @@ export default function Home() {
                 <Image
                   src="/miamicaps-coming-soon.png"
                   alt="Miami Captains App Preview"
-                  width={288}
-                  height={288}
+                  width={200}
+                  height={200}
                   className="opacity-50"
                 />
               </div>

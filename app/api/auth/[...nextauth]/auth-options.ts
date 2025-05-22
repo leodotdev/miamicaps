@@ -65,6 +65,17 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
+    async redirect({ url, baseUrl }) {
+      // Redirect to home page after successful login
+      if (url === baseUrl + "/login" || url === baseUrl + "/signup") {
+        return baseUrl + "/home";
+      }
+      // Allow relative callback URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      // Allow callback URLs on the same origin
+      if (new URL(url).origin === baseUrl) return url;
+      return baseUrl + "/home";
+    },
   },
   pages: {
     signIn: "/login",
