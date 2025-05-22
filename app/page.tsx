@@ -57,8 +57,8 @@ export default async function Home() {
                   <Image
                     src="/miamicaps-icon.png"
                     alt="Miami Captains Logo"
-                    width={64}
-                    height={64}
+                    width={48}
+                    height={48}
                   />
                 </div>
                 <div className="flex flex-col items-start text-left">

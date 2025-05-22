@@ -69,7 +69,7 @@ export function LoginForm() {
   return (
     <div className="space-y-6">
       <div className="space-y-2 text-center">
-        <h1 className="text-2xl font-bold">Login</h1>
+        <h1 className="text-2xl font-bold">Log in</h1>
         <p className="text-muted-foreground">
           Enter your credentials to access your account
         </p>
@@ -110,7 +110,7 @@ export function LoginForm() {
           )}
 
           <Button type="submit" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Logging in..." : "Login"}
+            {isSubmitting ? "Logging in..." : "Log in"}
           </Button>
         </form>
       </Form>

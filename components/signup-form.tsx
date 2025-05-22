@@ -109,7 +109,7 @@ export function SignupForm() {
   return (
     <div className="space-y-6">
       <div className="space-y-2 text-center">
-        <h1 className="text-2xl font-bold">Sign Up</h1>
+        <h1 className="text-4xl font-bold">Sign up</h1>
         <p className="text-muted-foreground">
           Create an account to get started
         </p>
