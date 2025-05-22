@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { PincodeProtection } from '@/components/pincode-protection';
 
 interface EmailSignup {
   id: string;
@@ -64,45 +65,50 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="container mx-auto p-6">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold">Email Signups Admin</h1>
-        <p className="text-gray-600 mt-2">
-          Total signups: {signupsData.total} | Last updated: {new Date(signupsData.lastUpdated).toLocaleString()}
-        </p>
-      </div>
+    <PincodeProtection 
+      title="Admin Access"
+      description="Enter the admin access code to view the dashboard."
+    >
+      <div className="container mx-auto p-6">
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold">Email Signups Admin</h1>
+          <p className="text-gray-600 mt-2">
+            Total signups: {signupsData.total} | Last updated: {new Date(signupsData.lastUpdated).toLocaleString()}
+          </p>
+        </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Email Signups</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {signupsData.signups.length === 0 ? (
-            <p className="text-gray-500">No email signups yet.</p>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="border-b">
-                    <th className="text-left p-2 font-semibold">Email</th>
-                    <th className="text-left p-2 font-semibold">Signup Date</th>
-                    <th className="text-left p-2 font-semibold">ID</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {signupsData.signups.map((signup) => (
-                    <tr key={signup.id} className="border-b hover:bg-gray-50">
-                      <td className="p-2">{signup.email}</td>
-                      <td className="p-2">{new Date(signup.timestamp).toLocaleString()}</td>
-                      <td className="p-2 text-gray-500 text-sm">{signup.id}</td>
+        <Card>
+          <CardHeader>
+            <CardTitle>Email Signups</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {signupsData.signups.length === 0 ? (
+              <p className="text-gray-500">No email signups yet.</p>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left p-2 font-semibold">Email</th>
+                      <th className="text-left p-2 font-semibold">Signup Date</th>
+                      <th className="text-left p-2 font-semibold">ID</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </CardContent>
-      </Card>
-    </div>
+                  </thead>
+                  <tbody>
+                    {signupsData.signups.map((signup) => (
+                      <tr key={signup.id} className="border-b hover:bg-gray-50">
+                        <td className="p-2">{signup.email}</td>
+                        <td className="p-2">{new Date(signup.timestamp).toLocaleString()}</td>
+                        <td className="p-2 text-gray-500 text-sm">{signup.id}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    </PincodeProtection>
   );
 }
