@@ -123,7 +123,7 @@ export function SignupForm() {
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Your name" {...field} />
+                  <Input inputSize="lg" placeholder="Your name" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

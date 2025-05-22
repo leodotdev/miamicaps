@@ -19,7 +19,6 @@ export default async function Home() {
       <div className="absolute top-4 right-4 z-20 flex gap-2">
         <Button
           variant="ghost"
-          size="sm"
           asChild
           className="text-white hover:text-white hover:bg-white/20 backdrop-blur-sm"
         >
@@ -27,7 +26,6 @@ export default async function Home() {
         </Button>
         <Button
           variant="ghost"
-          size="sm"
           asChild
           className="text-white hover:text-white hover:bg-primary/70 backdrop-blur-sm"
         >
@@ -51,23 +49,21 @@ export default async function Home() {
       <div className="relative z-10 max-w-md w-full px-4">
         <div className="bg-background backdrop-blur-sm rounded-3xl p-7 shadow-xl">
           <div className="flex flex-col items-center gap-6 text-center">
-            <div className="flex flex-col items-center">
-              <div className="flex items-center gap-3 bg-primary/10 p-4 rounded-lg border border-primary/20">
-                <div className="squircle shadow-lg shadow-sky-500/25">
-                  <Image
-                    src="/miamicaps-icon.png"
-                    alt="Miami Captains Logo"
-                    width={48}
-                    height={48}
-                  />
-                </div>
-                <div className="flex flex-col items-start text-left">
-                  <h1 className="text-xl font-extrabold">Miami Captains</h1>
-                  <span className="text-xs text-muted-foreground">
-                    The #1 place for finding and booking amazing boat captains
-                    in and around Miami.
-                  </span>
-                </div>
+            <div className="flex items-center gap-3 bg-primary/10 p-4 rounded-lg border border-primary/20">
+              <div className="shrink-0 squircle shadow-lg shadow-sky-500/25">
+                <Image
+                  src="/miamicaps-icon.png"
+                  alt="Miami Captains Logo"
+                  width={48}
+                  height={48}
+                />
+              </div>
+              <div className="flex flex-col items-start text-left">
+                <h1 className="text-xl font-extrabold">Miami Captains</h1>
+                <span className="text-xs text-muted-foreground">
+                  The #1 place for finding and booking amazing boat captains in
+                  and around Miami.
+                </span>
               </div>
             </div>
 
