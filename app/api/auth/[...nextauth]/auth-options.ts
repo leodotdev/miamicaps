@@ -1,14 +1,13 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import bcrypt from "bcrypt";
-import { getDb } from "@/db/index-pg";
-import { users } from "@/db/schema";
+import { db } from "@/db/supabase";
+import { users } from "@/db/schema-supabase";
 import { eq } from "drizzle-orm";
-import { v4 as uuidv4 } from "uuid";
 import type { NextAuthOptions } from "next-auth";
 
 export const authOptions: NextAuthOptions = {
-  adapter: DrizzleAdapter(getDb()),
+  adapter: DrizzleAdapter(db),
   providers: [
     CredentialsProvider({
       id: "credentials",
@@ -22,10 +21,11 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const db = getDb();
-        const user = await db.query.users.findFirst({
-          where: eq(users.email, credentials.email),
-        });
+        const [user] = await db
+          .select()
+          .from(users)
+          .where(eq(users.email, credentials.email))
+          .limit(1);
 
         if (!user || !user.password) {
           return null;
@@ -76,14 +76,14 @@ export const authOptions: NextAuthOptions = {
 };
 
 export async function register(email: string, password: string, name?: string) {
-  const db = getDb();
-
   // Check if user already exists
-  const existingUser = await db.query.users.findFirst({
-    where: eq(users.email, email),
-  });
+  const existingUser = await db
+    .select()
+    .from(users)
+    .where(eq(users.email, email))
+    .limit(1);
 
-  if (existingUser) {
+  if (existingUser.length > 0) {
     throw new Error("Email already in use");
   }
 
@@ -91,14 +91,14 @@ export async function register(email: string, password: string, name?: string) {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   // Create the user
-  const userId = uuidv4();
-  
-  await db.insert(users).values({
-    id: userId,
-    email,
-    name,
-    password: hashedPassword,
-  });
+  const [newUser] = await db
+    .insert(users)
+    .values({
+      email,
+      name,
+      password: hashedPassword,
+    })
+    .returning();
 
-  return { id: userId, email, name };
+  return { id: newUser.id, email: newUser.email, name: newUser.name };
 }

@@ -70,7 +70,7 @@ export function EmailSignupForm() {
 
   if (isSubmitted) {
     return (
-      <div className="p-4 text-center bg-primary/10 rounded-lg self-stretch">
+      <div className="p-4 text-center bg-primary/10 rounded-lg self-stretch ">
         <p className="font-medium text-primary">Thank you for signing up!</p>
         <p className="text-muted-foreground">
           We&apos;ll notify you when we launch.

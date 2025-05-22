@@ -4,18 +4,19 @@ import {
   text,
   timestamp,
   primaryKey,
+  uuid,
 } from "drizzle-orm/pg-core";
 
 // Email Signups table
 export const emailSignups = pgTable("email_signups", {
-  id: text("id").primaryKey(),
+  id: uuid("id").defaultRandom().primaryKey(),
   email: text("email").notNull().unique(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
 // Users table for authentication
 export const users = pgTable("users", {
-  id: text("id").primaryKey(),
+  id: uuid("id").defaultRandom().primaryKey(),
   name: text("name"),
   email: text("email").notNull().unique(),
   emailVerified: timestamp("email_verified"),
@@ -28,7 +29,7 @@ export const users = pgTable("users", {
 // NextAuth sessions
 export const sessions = pgTable("sessions", {
   id: text("id").primaryKey(),
-  userId: text("user_id")
+  userId: uuid("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   sessionToken: text("session_token").notNull().unique(),
@@ -39,7 +40,7 @@ export const sessions = pgTable("sessions", {
 export const accounts = pgTable(
   "accounts",
   {
-    userId: text("user_id")
+    userId: uuid("user_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
     type: text("type").notNull(),

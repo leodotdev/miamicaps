@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { db } from "@/db/supabase";
+import { emailSignups } from "@/db/schema-supabase";
+import { eq } from "drizzle-orm";
 
 // Force Node.js runtime
 export const runtime = "nodejs";
-
-// In-memory storage for email signups (works on serverless)
-let emailSignups: Array<{ email: string; timestamp: string; id: string }> = [];
 
 // Email validation schema  
 const emailSignupSchema = z.object({
@@ -29,25 +29,26 @@ export async function POST(req: NextRequest) {
     const { email } = validatedData.data;
     
     // Check if email already exists
-    const existingSignup = emailSignups.find(signup => signup.email === email);
-    if (existingSignup) {
+    const existingSignup = await db
+      .select()
+      .from(emailSignups)
+      .where(eq(emailSignups.email, email))
+      .limit(1);
+    
+    if (existingSignup.length > 0) {
       return NextResponse.json(
         { message: "Email already registered" },
         { status: 200 }
       );
     }
     
-    // Add email to in-memory storage
-    const newSignup = {
-      id: Date.now().toString(),
-      email,
-      timestamp: new Date().toISOString(),
-    };
+    // Add email to database
+    const [newSignup] = await db
+      .insert(emailSignups)
+      .values({ email })
+      .returning();
     
-    emailSignups.push(newSignup);
-    
-    console.log(`Email signup: ${email} at ${newSignup.timestamp}`);
-    console.log(`Total signups: ${emailSignups.length}`);
+    console.log(`Email signup: ${email} at ${newSignup.createdAt.toISOString()}`);
     
     return NextResponse.json(
       { message: "Email registered successfully" },
@@ -77,9 +78,19 @@ export async function GET(req: NextRequest) {
       );
     }
     
+    // Fetch all signups from database
+    const allSignups = await db.select().from(emailSignups);
+    
+    // Transform the data to match the expected format
+    const transformedSignups = allSignups.map(signup => ({
+      id: signup.id,
+      email: signup.email,
+      timestamp: signup.createdAt.toISOString()
+    }));
+    
     return NextResponse.json({
-      signups: emailSignups,
-      total: emailSignups.length,
+      signups: transformedSignups,
+      total: transformedSignups.length,
       lastUpdated: new Date().toISOString()
     });
     
